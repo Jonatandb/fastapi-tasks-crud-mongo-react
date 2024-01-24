@@ -1,10 +1,14 @@
 from fastapi import APIRouter
 
+from database import get_all_tasks
+
+
 task = APIRouter()
 
 @task.get('/api/tasks')
-async def get_all_tasks():
-  return 'All tasks'
+async def get_tasks():
+  tasks = await get_all_tasks()
+  return tasks
 
 @task.get('/api/tasks/{id}')
 async def get_one_task(id: str):

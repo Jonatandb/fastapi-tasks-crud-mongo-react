@@ -1,8 +1,9 @@
 from bson import ObjectId
 from motor.motor_asyncio import AsyncIOMotorClient
 from models import Task
+from os import getenv
 
-client = AsyncIOMotorClient('mongodb://localhost')
+client = AsyncIOMotorClient(getenv('MONGO_SERVER'))
 database = client.taskdatabase
 collection = database.tasks
 
