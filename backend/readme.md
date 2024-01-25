@@ -32,5 +32,5 @@ En caso de desear utilizar MongoDB desde dentro de contendor Docker:
   - docker run --name mongodb -d -p 27017:27017 mongo
     - Luego de ejecutar esto ya se puede conectar a Mongo mediante la url:
       - ```mongodb://localhost```
-- Detener el contenedor:
+- Detener y eliminar el contenedor:
   - docker stop mongodb && docker rm mongodb
