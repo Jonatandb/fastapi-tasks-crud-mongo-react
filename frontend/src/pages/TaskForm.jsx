@@ -7,8 +7,7 @@ function TaskForm() {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    await axios.post('http://localhost:8000/api/tasks',
-    {
+    await axios.post('http://localhost:8000/api/tasks', {
       title,
       description,
     })
@@ -25,6 +24,7 @@ function TaskForm() {
           placeholder='Write a title'
           className='block py-2 px-3 mb-4 w-full text-black'
           onChange={e => setTitle(e.target.value)}
+          autoFocus
         />
         <textarea
           placeholder='Write a description'
