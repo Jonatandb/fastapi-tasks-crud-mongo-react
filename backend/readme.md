@@ -2,7 +2,7 @@
 
 ## Crear entorno virtual:
 - cd backend
-- python -m venv venv
+- python -m venv venv (Sólo requerido la primera vez)
 
 ## Activar entorno:
 - source venv/Scripts/activate

@@ -5,6 +5,6 @@ app = FastAPI()
 
 @app.get('/')
 def welcome():
-  return {'message': 'Welcome to my FastAPI API 🤙🏻'}
+  return {'message': 'Welcome to my FastAPI API 🤙🏻 Visit /docs to access Swagger API'}
 
 app.include_router(task)
