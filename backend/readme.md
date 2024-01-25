@@ -1,5 +1,10 @@
 # Backend
 
+## Requisitos
+- MongoDB debe estar funcionando
+  - Ver más abajo cómo ejecutarlo con Docker como alternativa, en caso de no tenerlo instalado.
+- Configurar URL de MongoDB en el archivo ".env" (basarse en ".env.example")
+
 ## Crear entorno virtual:
 - cd backend
 - python -m venv venv (Sólo requerido la primera vez)
@@ -10,10 +15,6 @@
 ## Instalar dependencias:
 pip install -r requirements.txt
 
-## Requisitos
-- MongoDB debe estar funcionando
-  - Ver más abajo cómo ejecutarlo con Docker como alternativa, en caso de no tenerlo instalado.
-- Configurar URL de MongoDB en el archivo ".env" (basarse en ".env.example")
 
 ## Iniciar servidor:
 - uvicorn main:app --reload --env-file=".env"
