@@ -1,6 +1,6 @@
 # Frontend
 
-## Requisitos
+## Requisitos:
 - El backend debe estar en ejecución.
 
 ## Instalar dependencias:

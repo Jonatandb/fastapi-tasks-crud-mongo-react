@@ -1,6 +1,6 @@
 # Backend
 
-## Requisitos
+## Requisitos:
 - MongoDB debe estar funcionando
   - Ver más abajo cómo ejecutarlo con Docker como alternativa, en caso de no tenerlo instalado.
 - Configurar URL de MongoDB en el archivo ".env" (basarse en ".env.example")
@@ -25,7 +25,7 @@ pip install -r requirements.txt
 - http://127.0.0.1:8000/docs
 
 ---
-## Mongodb desde un contenedor Docker
+## Mongodb desde un contenedor Docker:
 En caso de desear utilizar MongoDB desde dentro de contendor Docker:
 - Descargar imagen (solo la primera vez):
   - docker pull mongo
