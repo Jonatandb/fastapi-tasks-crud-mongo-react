@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import axios from 'axios'
 
 function TaskForm() {
   const [title, setTitle] = useState('')
@@ -6,18 +7,14 @@ function TaskForm() {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    const response = await fetch('http://localhost:8000/api/tasks', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        title,
-        description,
-      }),
+    await axios.post('http://localhost:8000/api/tasks',
+    {
+      title,
+      description,
     })
-    const data = await response.json()
-    console.log(data)
+    setTitle('')
+    setDescription('')
+    e.target.reset()
   }
 
   return (
