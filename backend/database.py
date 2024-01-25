@@ -1,6 +1,6 @@
 from bson import ObjectId
 from motor.motor_asyncio import AsyncIOMotorClient
-from models import Task
+from models import Task, UpdateTask
 from os import getenv
 
 client = AsyncIOMotorClient(getenv('MONGO_SERVER'))
@@ -20,7 +20,7 @@ async def get_task_by_title(title):
 
 async def get_all_tasks():
     tasks = []
-    cursor = collection.cursor.find({})
+    cursor = collection.find({})
     async for document in cursor:
         tasks.append(Task(**document))
     return tasks
@@ -32,8 +32,8 @@ async def create_task(task):
     return created_task
 
 
-async def update_task(id: str, data):
-    task = {k: v for k, v in data.dict().items() if v is not None}
+async def update_task(id: str, data: UpdateTask):
+    task = {k: v for k, v in data.model_dump().items() if v is not None}
     await collection.update_one({'_id': ObjectId(id)}, {'$set': task})
     document = await collection.find_one({'_id': ObjectId(id)})
     return document
