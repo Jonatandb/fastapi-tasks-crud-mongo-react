@@ -17,9 +17,9 @@ pip install -r requirements.txt
 
 
 ## Iniciar servidor:
-- uvicorn main:app --reload --env-file=".env"
+- uvicorn main:app --reload
   - Para que se ejecute en un puerto diferente del 8000 (por defecto), especificar otro usando el flag "--port":
-    - uvicorn main:app --reload --env-file=".env" --port 3000
+    - uvicorn main:app --reload --port 3000
 
 ## Acceso a Swagger:
 - http://127.0.0.1:8000/docs

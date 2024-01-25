@@ -1,9 +1,10 @@
 from bson import ObjectId
 from motor.motor_asyncio import AsyncIOMotorClient
 from models import Task, UpdateTask
-from os import getenv
+from decouple import config
 
-client = AsyncIOMotorClient(getenv('MONGO_SERVER'))
+
+client = AsyncIOMotorClient(config('MONGO_SERVER'))
 database = client.taskdatabase
 collection = database.tasks
 
