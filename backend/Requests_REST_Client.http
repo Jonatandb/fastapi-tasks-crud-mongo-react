@@ -1,0 +1,36 @@
+# VSCode REST Client extension file.
+
+# Get all tasks
+GET http://localhost:8000/api/tasks HTTP/1.1
+################################
+
+# Get task by id
+GET http://localhost:8000/api/tasks/65b255f934314f6521ba3d3f HTTP/1.1
+################################
+
+# Create a new task
+POST http://localhost:8000/api/tasks HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Hacer frontend",
+    "description": "Ahora con Vite crear frontend usando React",
+    "completed": false
+}
+
+################################
+
+# Update a task
+PUT http://localhost:8000/api/tasks/65b255f934314f6521ba3d3f HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Finalizar API",
+    "description": "Solucionar problemas con model Pydantic",
+    "completed": true
+}
+
+################################
+
+# Delete a task
+DELETE http://localhost:8000/api/tasks/65b255fc34314f6521ba3d43 HTTP/1.1
