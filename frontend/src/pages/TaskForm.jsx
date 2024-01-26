@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import { createTask, deleteTask, fetchTask, updateTask } from '../api/tasks'
 
 function TaskForm() {
   const [title, setTitle] = useState('')
@@ -12,25 +12,32 @@ function TaskForm() {
     e.preventDefault()
     try {
       if (!params.id) {
-        await axios.post('http://localhost:8000/api/tasks', {
-          title,
-          description,
-        })
+        try {
+          await createTask({ title, description })
+        } catch (error) {
+          console.log(error?.message)
+        }
       } else {
-        await axios.put(`http://localhost:8000/api/tasks/${params.id}`, {
-          title,
-          description,
-        })
+        try {
+          await updateTask(params.id, { title, description })
+        } catch (error) {
+          console.log(error?.message)
+        }
       }
       navigate('/')
     } catch (error) {
-      console.log(error.message)
+      console.log(error?.message)
     }
   }
 
-  const handleDelete = async () => {
+  const handleDelete = async e => {
+    e.preventDefault()
     try {
-      await axios.delete(`http://localhost:8000/api/tasks/${params.id}`)
+      try {
+        await deleteTask(params.id)
+      } catch (error) {
+        console.log(error?.message)
+      }
       navigate('/')
     } catch (error) {
       console.log(error.message)
@@ -39,11 +46,13 @@ function TaskForm() {
 
   useEffect(() => {
     async function getTaskById() {
-      const response = await axios.get(
-        `http://localhost:8000/api/tasks/${params.id}`,
-      )
-      setTitle(response.data.title ?? '')
-      setDescription(response.data.description ?? '')
+      try {
+        const response = await fetchTask(params.id)
+        setTitle(response.data.title ?? '')
+        setDescription(response.data.description ?? '')
+      } catch (error) {
+        console.log(error?.message)
+      }
     }
     if (params.id) {
       setTitle('Loading title...')
@@ -84,7 +93,7 @@ function TaskForm() {
             {params.id && (
               <button
                 className='bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 rounded mt-5'
-                onClick={() => handleDelete()}
+                onClick={handleDelete}
               >
                 Delete
               </button>

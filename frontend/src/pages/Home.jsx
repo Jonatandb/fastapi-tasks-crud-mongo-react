@@ -1,15 +1,18 @@
-import { useEffect } from 'react'
-import axios from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import TaskList from '../components/TaskList'
+import { fetchTasks } from '../api/tasks'
 
 function Home() {
   const [tasks, setTasks] = useState([])
 
   useEffect(() => {
-    const getTasks = async () => {
-      const response = await axios.get('http://localhost:8000/api/tasks')
-      setTasks(response.data)
+    async function getTasks() {
+      try {
+        const response = await fetchTasks()
+        setTasks(response.data)
+      } catch (error) {
+        console.log(error?.message)
+      }
     }
     getTasks()
   }, [])
