@@ -5,6 +5,7 @@ import { createTask, deleteTask, fetchTask, updateTask } from '../api/tasks'
 function TaskForm() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
+  const [completed, setCompleted] = useState(false)
   const params = useParams()
   const navigate = useNavigate()
 
@@ -19,7 +20,7 @@ function TaskForm() {
         }
       } else {
         try {
-          await updateTask(params.id, { title, description })
+          await updateTask(params.id, { title, description, completed })
         } catch (error) {
           console.log(error?.message)
         }
@@ -50,6 +51,7 @@ function TaskForm() {
         const response = await fetchTask(params.id)
         setTitle(response.data.title ?? '')
         setDescription(response.data.description ?? '')
+        setCompleted(response.data.completed)
       } catch (error) {
         console.log(error?.message)
       }
@@ -68,7 +70,7 @@ function TaskForm() {
     <div className='flex items-center justify-center'>
       <div>
         <form className='bg-zinc-950 p-4 rounded-xl' onSubmit={handleSubmit}>
-          <h1 className='text-3xl font-bold mb-4'>
+          <h1 className='text-3xl font-bold mb-4 text-center'>
             {params.id ? 'Update Task' : 'Create Task'}
           </h1>
           <input
