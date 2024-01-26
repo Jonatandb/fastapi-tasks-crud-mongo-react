@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 
 function TaskCard({ task }) {
-  const { title, description } = task
+  const { _id, title, description } = task
   const navigate = useNavigate()
   return (
     <div
