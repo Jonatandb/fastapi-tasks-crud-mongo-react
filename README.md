@@ -1,4 +1,4 @@
-# FastAPI Tasks CRUD (MongoDB / React)
+# Tasks CRUD (FastAPI / MongoDB / React)
 
 Leer instrucciones en archivos README.md de [backend](backend/README.md) y [frontend](frontend/README.md).
 
