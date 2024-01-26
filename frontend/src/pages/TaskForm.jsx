@@ -55,8 +55,10 @@ function TaskForm() {
   return (
     <div className='flex items-center justify-center'>
       <div>
-        <form className='bg-zinc-950 p-10' onSubmit={handleSubmit}>
-          <h1 className='text-3xl font-bold my-4'>{params.id ? 'Update Task' : 'Create Task'}</h1>
+        <form className='bg-zinc-950 p-4' onSubmit={handleSubmit}>
+          <h1 className='text-3xl font-bold mb-4'>
+            {params.id ? 'Update Task' : 'Create Task'}
+          </h1>
           <input
             type='text'
             placeholder='Write a title'
@@ -72,22 +74,23 @@ function TaskForm() {
             onChange={e => setDescription(e.target.value)}
             value={description ?? ''}
           />
-          <button
-            type='submit'
-            className='bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded mt-5'
-          >
-            {params.id ? 'Update' : 'Save'}
-          </button>
+          <div className='flex justify-evenly'>
+            <button
+              type='submit'
+              className='bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded mt-5'
+            >
+              {params.id ? 'Update' : 'Save'}
+            </button>
+            {params.id && (
+              <button
+                className='bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 rounded mt-5'
+                onClick={() => handleDelete()}
+              >
+                Delete
+              </button>
+            )}
+          </div>
         </form>
-
-        {params.id && (
-          <button
-            className='bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 rounded mt-5'
-            onClick={() => handleDelete()}
-          >
-            Delete
-          </button>
-        )}
       </div>
     </div>
   )
