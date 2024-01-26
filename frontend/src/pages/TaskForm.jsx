@@ -50,12 +50,13 @@ function TaskForm() {
       setDescription('Loading description...')
       getTaskById()
     }
-  }, [])
+  }, [params.id])
 
   return (
-    <div className='flex items-center justify-center h-[calc(100vh-10rem)]'>
+    <div className='flex items-center justify-center'>
       <div>
         <form className='bg-zinc-950 p-10' onSubmit={handleSubmit}>
+          <h1 className='text-3xl font-bold my-4'>{params.id ? 'Update Task' : 'Create Task'}</h1>
           <input
             type='text'
             placeholder='Write a title'
